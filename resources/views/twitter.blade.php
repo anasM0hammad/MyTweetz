@@ -46,6 +46,12 @@
        <div class="card mycard">
        	<div class="card-body">
        	 <h5>{{$tweet['text']}}<i class="fas fa-heart float-right">{{$tweet['favorite_count']}}</i> <i class="fas fa-redo float-right">{{$tweet['retweet_count']}}</i></h5>
+
+       	 @if(!empty($tweet['extended_entities']['media']))
+          @foreach($tweet['extended_entities']['media'] as $i)
+           <img src="{{$i['media_url_https']}}" width="60" height="60" style="border-radius: 50%;">
+          @endforeach
+       	 @endif
        	</div>
        </div> 
       @endforeach 
