@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
    <style type="text/css">
+
+    label{
+    	color: #35A7E8;
+    }
    	 
    	 .mycard{
 
@@ -37,7 +41,33 @@
 	  </div>
 	</nav>
 
-	<br><h1 class="text-center">Your Tweets</h1><br><br>
+    <br><br>
+
+    <div class="container">
+     <div class="container">
+     	<form action="{{route('post.tweet')}}" method="POST" enctype="multipart/form-data">
+     	 {{csrf_field()}}
+     	  @if(count($errors) > 0)
+     	   @foreach($errors->all() as $error)
+            <div class="alert alert-danger">{{$error}}</div>
+           @endforeach
+     	  @endif	
+		  <div class="form-group">
+		    <label><b>What's Happening</b></label>
+		    <textarea class="form-control" rows="3" name="tweet"></textarea>
+		  </div>
+		  <div class="form-group">
+		  	<label><b>Upload Images</b></label>
+		  	<input class="form-control-file" type="file" name="images[]" multiple>
+		  </div>
+
+		  <button class="btn btn-primary" type="submit">Tweet</button>
+		</form>	     	
+     </div> 
+    </div>
+
+
+	<br><h1 class="text-center">Your Tweets</h1><br>
 
 
 	<div class="container">
